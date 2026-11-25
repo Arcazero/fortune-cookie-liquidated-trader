@@ -51,6 +51,9 @@ def validate_fortune(line: str) -> str:
             file=sys.stderr,
         )
         sys.exit(1)
+    if "\n" in line or "\r" in line:
+        print("error: fortune line must be a single line", file=sys.stderr)
+        sys.exit(1)
     words = line.split()
     if len(words) > MAX_WORDS:
         print(
